@@ -64,6 +64,10 @@ pub fn create_router() -> Router {
     Router::new()
         .route("/", get(health_check).post(health_check))
         .route("/health_check", get(health_check).post(health_check))
+        .route(
+            "/health/{_:(readiness|liveness)}",
+            get(|| async { (StatusCode::OK, "Hello, World!") }),
+        )
         .layer(
             ServiceBuilder::new()
                 .layer(cors)
