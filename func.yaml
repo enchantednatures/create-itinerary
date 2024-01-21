@@ -1,13 +1,14 @@
 specVersion: 0.35.0
 name: create-itinerary
 runtime: rust
+registry: docker.io/hcasten
+image: docker.io/hcasten/create-itinerary:latest
 created: 2024-01-02T21:54:48.003541-08:00
-
 build:
   git:
-    url: https://github.com/enchantednatures/create-itinerary.git   # required, git repository with the function source code
-    revision: main                                    # optional, git revision to be used (branch, tag, commit)
-    # contextDir: myfunction                          # optional, needed only if the function is not located in the repository root folder
-  buildpacks: []
-  builder: ""
-  buildEnvs: []
+    url: https://github.com/enchantednatures/create-itinerary
+    revision: main
+  builder: pack
+deploy:
+  namespace: youtinerary
+  remote: true
